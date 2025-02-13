@@ -1,0 +1,51 @@
+<nav class="bg-[#09090a] shadow-lg h-screen min-w-[260px] py-6 px-6 font-[sans-serif] flex flex-col overflow-auto">
+
+    <div class="flex flex-wrap items-center cursor-pointer">
+        <ng-container *ngIf="authState$ | async as auth">
+            <div class="ml-4">
+                <p class="text-sm text-gray-300">{{auth.admin?.username}}</p>
+                <p class="text-xs text-gray-400 mt-0.5">{{auth.admin?.email}}</p>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="relative bg-[#1f1f22] px-4 py-2 rounded-md my-8">
+    </div>
+
+    <ul class="space-y-10 flex-1 mt-4 mb-10">
+        <li>
+            <a routerLink="/admin/dashboard"
+                class="text-gray-300 hover:text-white text-sm flex items-center rounded-md">
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/admin/users" class="text-gray-300 hover:text-white text-sm flex items-center rounded-md">
+                <span>Users</span>
+            </a>
+        </li>
+        <ng-container *ngIf="authState$ | async as auth">
+            <li *ngIf="auth.admin?.role === 'master'">
+                <a routerLink="/admin/admins"
+                    class="text-gray-300 hover:text-white text-sm flex items-center rounded-md">
+                    <span>Admins</span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+
+    <ul>
+        <li>
+            <a (click)="logout()"
+                class="text-gray-300 hover:text-white text-sm flex items-center rounded-md cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
+                    viewBox="0 0 6.35 6.35">
+                    <path
+                        d="M3.172.53a.265.266 0 0 0-.262.268v2.127a.265.266 0 0 0 .53 0V.798A.265.266 0 0 0 3.172.53zm1.544.532a.265.266 0 0 0-.026 0 .265.266 0 0 0-.147.47c.459.391.749.973.749 1.626 0 1.18-.944 2.131-2.116 2.131A2.12 2.12 0 0 1 1.06 3.16c0-.65.286-1.228.74-1.62a.265.266 0 1 0-.344-.404A2.667 2.667 0 0 0 .53 3.158a2.66 2.66 0 0 0 2.647 2.663 2.657 2.657 0 0 0 2.645-2.663c0-.812-.363-1.542-.936-2.03a.265.266 0 0 0-.17-.066z"
+                        data-original="#000000" />
+                </svg>
+                <span>Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>

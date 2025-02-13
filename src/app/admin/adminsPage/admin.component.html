@@ -1,0 +1,32 @@
+<main class="flex h-screen justify-between">
+    <app-side></app-side>
+    <div class="flex-1 pt-[7rem] px-10 bg-[#262628] text-white">
+        <table class="min-w-full divide-y divide-gray-200 ">
+            <thead class="bg-gray-600 whitespace-nowrap">
+                <tr>
+                    <th class="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-100 uppercase">
+                        Username</th>
+                    <th class="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-100 uppercase">
+                        Email</th>
+                    <th class="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-100 uppercase">
+                        Joined At</th>
+                    <th class="px-4 py-4 text-left text-xs font-semibold tracking-wider text-gray-100 uppercase">
+                        Action</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200 bg-gray-400 whitespace-nowrap">
+                <tr *ngFor="let admin of admins">
+                    <td class="px-4 py-4 text-sm text-gray-50">{{admin.username}}</td>
+                    <td class="px-4 py-4 text-sm text-gray-50">{{admin.email}}</td>
+                    <td class="px-4 py-4 text-sm text-gray-50">{{admin.createdAt}}</td>
+                    <td class="px-4 py-4 text-sm text-gray-50">
+                        <button (click)="changeAdminStatus(admin.email)" class="text-red-600">{{admin.isBlocked ?
+                            'blocked' : 'active'}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>

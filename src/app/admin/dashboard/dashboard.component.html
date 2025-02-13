@@ -1,0 +1,12 @@
+<main class="flex h-screen justify-between">
+    <app-side></app-side>
+    <div class="flex-1  bg-[#262628] text-white flex flex-col items-center justify-center gap-4 font-medium">
+        <h2 class="text-3xl">Hi Welcome,
+            <span *ngIf="authState$ | async as auth" class="text-5xl">
+                {{auth.admin?.username | uppercase}}</span>
+        </h2>
+
+        <p class="text-lg">This is your admin dashboard. Hope you like it!</p>
+
+    </div>
+</main>
